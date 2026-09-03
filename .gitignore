@@ -29,3 +29,5 @@ yarn-error.log*
 
 # scratch audit files
 scratch_audit/
+
+captured_screenshots/
