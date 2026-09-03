@@ -1,0 +1,14 @@
+/* Page Extras & Animation Utilities */
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(140, 184, 143, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(140, 184, 143, 0);
+  }
+}
+
+.pulse-animation {
+  animation: pulseGlow 2.5s infinite;
+}

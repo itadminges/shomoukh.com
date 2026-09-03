@@ -1,0 +1,3 @@
+import Link from 'next/link';
+export const Button = ({ href, children }: { href: string; children: React.ReactNode }) => <Link className="button" href={href}>{children}</Link>;
+export function PageHero({ title, image = '/assets/feature.jpg' }: { title: string; image?: string }) { return <section className="page-hero" style={{ backgroundImage: `linear-gradient(90deg, rgba(41,58,70,.7), rgba(41,58,70,.18)), url(${image})` }}><div><p>Shomoukh Nursery School</p><h1>{title}</h1></div></section> }
