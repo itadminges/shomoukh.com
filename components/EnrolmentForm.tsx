@@ -47,15 +47,15 @@ export function EnrolmentForm() {
     }
     const entries = [
       ...fields.flatMap((field) => {
-      if (field.name === 'preferred_days') return [];
-      const isCheckable = field instanceof HTMLInputElement && (field.type === 'radio' || field.type === 'checkbox');
-      if (isCheckable && !field.checked) return [];
-      const value = field.value.trim() || (isCheckable && field.type === 'checkbox' && field.checked ? 'Yes' : '');
-      if (!value) return [];
-      const group = field.closest('.form-group, .health-item, .acknowledgement-group');
-      const label = group?.querySelector<HTMLElement>('.form-label')?.innerText.replace(/\*/g, '').trim() || field.name || 'Response';
-      const section = headers.findLast((header) => Boolean(header.compareDocumentPosition(field) & Node.DOCUMENT_POSITION_FOLLOWING))?.innerText.trim() || 'APPLICATION DETAILS';
-      return [{ section, label, value }];
+        if (field.name === 'preferred_days') return [];
+        const isCheckable = field instanceof HTMLInputElement && (field.type === 'radio' || field.type === 'checkbox');
+        if (isCheckable && !field.checked) return [];
+        const value = field.value.trim() || (isCheckable && field.type === 'checkbox' && field.checked ? 'Yes' : '');
+        if (!value) return [];
+        const group = field.closest('.form-group, .health-item, .acknowledgement-group');
+        const label = group?.querySelector<HTMLElement>('.form-label')?.innerText.replace(/\*/g, '').trim() || field.name || 'Response';
+        const section = headers.findLast((header) => Boolean(header.compareDocumentPosition(field) & Node.DOCUMENT_POSITION_FOLLOWING))?.innerText.trim() || 'APPLICATION DETAILS';
+        return [{ section, label, value }];
       }),
       {
         section: 'ADDITIONAL INFORMATION',
@@ -102,7 +102,6 @@ export function EnrolmentForm() {
               </label>
               <select className="form-pill-select" required defaultValue="">
                 <option value="" disabled>Academic Year</option>
-                <option value="2024/2025">2024 / 2025</option>
                 <option value="2025/2026">2025 / 2026</option>
                 <option value="2026/2027">2026 / 2027</option>
                 <option value="2027/2028">2027 / 2028</option>
