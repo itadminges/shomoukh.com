@@ -28,6 +28,20 @@ npm run deploy:cloudflare:staging
 npm run deploy:cloudflare:production
 ```
 
+### Workers Builds dashboard settings
+
+Do not use `npm run build` followed by `npx wrangler deploy`; that produces a standard Next.js build and does not create the Cloudflare Worker entry point.
+
+Configure the connected Git repository in the Cloudflare Workers dashboard as follows:
+
+| Setting | Value |
+| --- | --- |
+| Build command | `npm run build:vinext` |
+| Deploy command | `npm run deploy:cloudflare:production -- --skip-build` |
+| Production branch | Your production branch, normally `main` |
+
+For preview branches, use `npm run deploy:cloudflare:staging -- --skip-build` as the deploy command if the project is configured with a separate staging build.
+
 Before the production command, log in to the intended Cloudflare account using `npx wrangler login`. Confirm the deployed Worker has the `production` environment selected, then attach the custom domain in the dashboard.
 
 ## Post-deployment checks
