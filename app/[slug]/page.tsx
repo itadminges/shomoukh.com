@@ -3,8 +3,63 @@ import { Footer } from '@/components/Footer';
 import { Button } from '@/components/Shared';
 import { EnrolmentForm } from '@/components/EnrolmentForm';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 
 const routes = ['about', 'enrichments', 'programs', 'admissions', 'parents', 'contactus', 'schedule-a-tour', 'apply-online'];
+
+const pageMetadata: Record<string, { title: string; description: string }> = {
+  about: {
+    title: 'About Our Reggio Emilia Inspired Nursery',
+    description: 'Learn about Shomoukh Nursery School in Muscat, Oman: a safe, nurturing early years environment inspired by the Reggio Emilia approach.',
+  },
+  enrichments: {
+    title: 'Enrichments & Ateliers',
+    description: 'Discover Shomoukh ateliers and enrichment activities, including clay, art, digital learning, music, drama, sensory play, PE and sports.',
+  },
+  programs: {
+    title: 'Early Years Programs & Ages',
+    description: 'Explore Shomoukh early years programs for infants, toddlers and preschoolers, combining EYFS with a Reggio Emilia inspired approach.',
+  },
+  admissions: {
+    title: 'Admissions',
+    description: 'Apply for Shomoukh Nursery School in Muscat. Our admissions team welcomes children from 6 months to 6 years, subject to availability.',
+  },
+  parents: {
+    title: 'Parents Portal',
+    description: 'Access the Shomoukh Nursery School parents portal and mobile apps for web, iOS and Android.',
+  },
+  contactus: {
+    title: 'Contact Our Muscat Campuses',
+    description: 'Contact Shomoukh Nursery School in Muscat. Visit our Al Mouj or Al Qurm campus, call our team, or send us an enquiry.',
+  },
+  'schedule-a-tour': {
+    title: 'Book a Visit',
+    description: 'Book a visit to Shomoukh Nursery School and meet our early years team at a convenient time for your family.',
+  },
+  'apply-online': {
+    title: 'Apply Online',
+    description: 'Complete the online enrollment form to apply for Shomoukh Nursery School in Muscat, Oman.',
+  },
+};
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const current = pageMetadata[slug];
+
+  if (!current) return {};
+
+  return {
+    title: current.title,
+    description: current.description,
+    alternates: { canonical: `/${slug}/` },
+    openGraph: {
+      title: current.title,
+      description: current.description,
+      url: `/${slug}/`,
+    },
+  };
+}
+
 export function generateStaticParams() {
   return routes.map((slug) => ({ slug }));
 }
