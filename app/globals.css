@@ -47,6 +47,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -55,6 +56,11 @@ body {
   background: #ffffff;
   font-family: 'Catamaran', 'Arial-Rounded', Arial, sans-serif;
   line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img, svg {
+  max-width: 100%;
 }
 
 a {
@@ -1766,8 +1772,33 @@ h1, h2, h3, h4, h5, h6, p {
    RESPONSIVE DESIGN (MOBILE & TABLET)
    ========================================================================== */
 @media (max-width: 1024px) {
+  .header-inner {
+    padding: 0 24px;
+  }
   .site-header nav {
     gap: 16px;
+  }
+  .site-header nav a {
+    font-size: 12px;
+  }
+  .header-btn-apply,
+  .header-btn-visit {
+    padding: 8px 12px;
+  }
+  .promise,
+  .admission-intro {
+    gap: 36px;
+  }
+  .portal-grid {
+    gap: 36px;
+    padding-inline: 32px;
+  }
+  .program-age-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .form-row-four-col,
+  .health-history-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .age-cards-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1814,6 +1845,13 @@ h1, h2, h3, h4, h5, h6, p {
     display: none;
   }
 
+  .pillars {
+    padding-inline: 20px;
+  }
+  .pillars-container {
+    display: block;
+  }
+
   .hero {
     min-height: 480px;
     height: 500px;
@@ -1855,6 +1893,77 @@ h1, h2, h3, h4, h5, h6, p {
   .program-intro-grid {
     grid-template-columns: 1fr;
     gap: 30px;
+  }
+
+  .promise,
+  .admission-intro,
+  .join {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 60px 24px;
+  }
+  .giant,
+  .age-title h2,
+  .join h2 {
+    font-size: clamp(96px, 28vw, 140px);
+  }
+  .promise h2,
+  .admission-intro h2 {
+    font-size: clamp(36px, 9vw, 52px);
+  }
+  .age-title {
+    display: block;
+  }
+  .age-title h3,
+  .join h3 {
+    font-size: clamp(26px, 7vw, 36px);
+    margin: 0 0 18px;
+  }
+  .join > img {
+    width: min(280px, 100%);
+    height: auto;
+    margin: 0 auto;
+  }
+  .program-age-grid,
+  .portal-grid,
+  .campuses,
+  .map-grid {
+    grid-template-columns: 1fr;
+  }
+  .portal-grid {
+    min-height: auto;
+    padding: 64px 24px 88px;
+  }
+  .portal-grid img {
+    width: min(250px, 100%);
+  }
+  .campuses {
+    gap: 32px;
+    padding-bottom: 72px;
+  }
+  .map-grid {
+    margin-top: -32px;
+    gap: 32px;
+  }
+  .contact-form {
+    padding: 42px 20px 72px;
+  }
+  .contact-form > h2 {
+    font-size: clamp(42px, 12vw, 58px);
+  }
+  .simple-page-head {
+    min-height: 0;
+    flex-direction: column;
+    gap: 22px;
+    padding: 48px 20px;
+    text-align: center;
+  }
+  .simple-page-head img {
+    width: min(230px, 75vw);
+    height: auto;
+  }
+  .simple-page-head h1 {
+    font-size: clamp(48px, 14vw, 70px);
   }
 
   .inner-hero {
@@ -1910,10 +2019,75 @@ h1, h2, h3, h4, h5, h6, p {
     gap: 30px;
   }
 
-  .reference-form, .enrolment fieldset {
+  .reference-form, .enrolment fieldset,
+  .form-row-two-col,
+  .form-row-three-col,
+  .form-row-four-col,
+  .form-grid-two-col,
+  .health-history-grid,
+  .required-docs-two-col {
     grid-template-columns: 1fr;
+  }
+  .enrolment-form-wrapper {
+    padding: 0 16px 64px;
+  }
+  .enrolment-banner {
+    margin: 24px 0;
+    padding: 14px 16px;
+  }
+  .enrolment-banner h2 {
+    font-size: 25px;
+  }
+  .radio-inline-row,
+  .checkbox-inline-row {
+    flex-wrap: wrap;
+    gap: 10px 16px;
+  }
+  .enrolment-submit-btn {
+    width: 100%;
   }
   .map-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-inner {
+    padding: 0 14px;
+  }
+  .brand img {
+    width: 128px;
+  }
+  .hero {
+    min-height: 440px;
+    height: 460px;
+  }
+  .hero-title {
+    font-size: 34px;
+  }
+  .hero-first,
+  .hero-tagline {
+    font-size: 11px;
+  }
+  .hero-bubble {
+    width: min(290px, 88vw);
+    height: min(290px, 88vw);
+  }
+  .hero-bubble-title {
+    font-size: clamp(36px, 12vw, 46px);
+  }
+  .age-cards-grid,
+  .atelier-cards-grid {
+    max-width: none;
+  }
+  .program-age-grid {
+    grid-template-columns: 1fr;
+  }
+  .campuses article {
+    padding: 18px 18px 44px;
+  }
+  .campuses img,
+  .map-grid > iframe {
+    height: 220px;
   }
 }
