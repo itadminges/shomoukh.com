@@ -31,3 +31,5 @@ yarn-error.log*
 scratch_audit/
 
 captured_screenshots/
+.vinext/
+.wrangler/
