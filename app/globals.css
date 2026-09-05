@@ -387,22 +387,6 @@ h1, h2, h3, h4, h5, h6, p {
   gap: 20px;
 }
 
-.carousel-arrow {
-  background: none;
-  border: none;
-  font-size: 32px;
-  color: #0A303A;
-  cursor: pointer;
-  padding: 10px;
-  font-family: 'Arial-Rounded', sans-serif;
-  transition: color 0.2s;
-  line-height: 1;
-}
-
-.carousel-arrow:hover {
-  color: #ee9a82;
-}
-
 .pillars-content {
   display: flex;
   align-items: center;
@@ -984,41 +968,28 @@ h1, h2, h3, h4, h5, h6, p {
 
 /* Partners Section */
 .partners-section {
-  padding: 45px 40px 40px;
+  padding: 64px 40px 52px;
   background: #ffffff;
   text-align: center;
+  overflow: hidden;
 }
 
 .partners-wrapper {
-  max-width: 1050px;
+  max-width: 1180px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
 }
 
-.partners-arrow {
-  background: none;
-  border: none;
-  font-size: 26px;
-  color: #cbd5e1;
-  cursor: pointer;
-  transition: color 0.2s;
-  font-family: 'Arial-Rounded', sans-serif;
-}
-
-.partners-arrow:hover {
-  color: #0A303A;
+.partners-viewport {
+  overflow: hidden;
+  width: 100%;
 }
 
 .partners-list {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 50px;
-  flex-wrap: wrap;
-  flex: 1;
+  gap: 96px;
+  width: max-content;
+  animation: partners-scroll 24s linear infinite;
 }
 
 .partner-item {
@@ -1026,16 +997,26 @@ h1, h2, h3, h4, h5, h6, p {
   align-items: center;
   gap: 8px;
   text-decoration: none;
+  flex: 0 0 150px;
+  justify-content: center;
 }
 
 .partner-item img {
-  height: 52px;
+  height: 68px;
   width: auto;
   object-fit: contain;
 }
 
 .partner-item.moe img {
-  height: 72px;
+  height: 88px;
+}
+
+@keyframes partners-scroll {
+  to { transform: translateX(calc(-50% - 48px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partners-list { animation: none; }
 }
 
 .powered-text {
@@ -1857,10 +1838,6 @@ h1, h2, h3, h4, h5, h6, p {
     flex-direction: column;
     gap: 40px;
   }
-  .carousel-arrow {
-    display: none;
-  }
-
   .ages-title {
     font-size: 72px;
   }
@@ -1909,7 +1886,23 @@ h1, h2, h3, h4, h5, h6, p {
   }
 
   .partners-list {
-    gap: 25px;
+    gap: 64px;
+  }
+
+  .partner-item {
+    flex-basis: 120px;
+  }
+
+  .partner-item img {
+    height: 56px;
+  }
+
+  .partner-item.moe img {
+    height: 72px;
+  }
+
+  @keyframes partners-scroll {
+    to { transform: translateX(calc(-50% - 32px)); }
   }
 
   .footer-main-inner {

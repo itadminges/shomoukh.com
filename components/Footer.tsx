@@ -64,6 +64,13 @@ const socials = [
   },
 ];
 
+const partners = [
+  { href: 'https://ges.om/', image: '/assets/partner-ges.png', alt: 'Global Education Services', className: '' },
+  { href: 'https://www.cognia.org/', image: '/assets/partner-cognia.png', alt: 'Cognia', className: '' },
+  { href: 'https://www.eyalliance.org.uk/', image: '/assets/partner-eya.jpg', alt: 'Early Years Alliance', className: '' },
+  { href: 'https://home.moe.gov.om/', image: '/assets/partner-moe.png', alt: 'Sultanate of Oman Ministry of Education', className: 'moe' },
+];
+
 export function Footer() {
   const [showTopBtn, setShowTopBtn] = useState(false);
 
@@ -100,24 +107,24 @@ export function Footer() {
 
       {/* Partner Logos Carousel */}
       <div className="partners-section">
-        <div className="partners-wrapper">
-          <button className="partners-arrow prev" aria-label="Previous partners">&lt;</button>
-          <div className="partners-list">
-            <a className="partner-item" href="https://ges.om/" target="_blank" rel="noreferrer">
-              <span className="powered-text"></span>
-              <img src="/assets/partner-ges.png" alt="Global Education Services" />
-            </a>
-            <a className="partner-item" href="https://www.cognia.org/" target="_blank" rel="noreferrer">
-              <img src="/assets/partner-cognia.png" alt="Cognia" />
-            </a>
-            <a className="partner-item" href="https://www.eyalliance.org.uk/" target="_blank" rel="noreferrer">
-              <img src="/assets/partner-eya.jpg" alt="Early Years Alliance" />
-            </a>
-            <a className="partner-item moe" href="https://home.moe.gov.om/" target="_blank" rel="noreferrer">
-              <img src="/assets/partner-moe.png" alt="Sultanate of Oman Ministry of Education" />
-            </a>
+        <div className="partners-wrapper" aria-label="Our partners">
+          <div className="partners-viewport">
+            <div className="partners-list">
+              {[...partners, ...partners].map((partner, index) => (
+                <a
+                  key={`${partner.alt}-${index}`}
+                  className={`partner-item ${partner.className}`}
+                  href={partner.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-hidden={index >= partners.length || undefined}
+                  tabIndex={index >= partners.length ? -1 : undefined}
+                >
+                  <img src={partner.image} alt={index < partners.length ? partner.alt : ''} />
+                </a>
+              ))}
+            </div>
           </div>
-          <button className="partners-arrow next" aria-label="Next partners">&gt;</button>
         </div>
         <div className="partner-dots">
           <span className="dot active" />
@@ -148,7 +155,7 @@ export function Footer() {
               <svg className="contact-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                 <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
               </svg>
-              <span>info-almouj@shomoukh.com</span>
+              <span>info.almouj@shomoukh.com</span>
             </div>
             <div className="contact-item">
               <svg className="contact-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
@@ -164,7 +171,7 @@ export function Footer() {
               <svg className="contact-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                 <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z" />
               </svg>
-              <span>+968 24600886</span>
+              <span>+968 24600610</span>
             </div>
             <div className="contact-item">
               <svg className="contact-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
@@ -176,7 +183,7 @@ export function Footer() {
               <svg className="contact-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
               </svg>
-              <span>Al Sarooj St, Shatti Al Qurm Way 3046 Bldg 355 Muscat Sultanate of Oman.</span>
+              <span>Al Suraj St, Shatti Al Qurm Way 3046, Bldg 355, Muscat, Sultanate of Oman.</span>
             </div>
           </div>
 
@@ -215,7 +222,7 @@ export function Footer() {
 
       {/* Copyright Bar */}
       <div className="footer-copyright">
-        <p>Copyright© 2024. Global Education Services L.L.C. All Rights Reserved.</p>
+        <p>Copyright © 2026, Global Education Services L.L.C. All Rights Reserved.</p>
       </div>
 
       {/* Floating Scroll to Top */}

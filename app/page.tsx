@@ -14,7 +14,7 @@ const agesData = [
   {
     title: 'Toddlers',
     photo: '/assets/learning.jpg',
-    description: 'Your child will explore the world around him and form relations with other children & adults.',
+    description: 'Your child will explore the world around them and form relations with other children and adults.',
     age: '12-35 months',
     hours: '8:30 - 1:30h',
     theme: 'toddlers',
@@ -22,7 +22,7 @@ const agesData = [
   {
     title: 'Preschoolers',
     photo: '/assets/child.jpg',
-    description: 'Providing your baby’s brain with a strong foundation for learning and growing.',
+    description: 'Your child will feel confident in their ability to meet complex challenges.',
     age: '36-48 months',
     hours: '8:30 - 1:30h',
     theme: 'preschoolers',
@@ -108,10 +108,9 @@ export default function Home() {
           </svg>
         </section>
 
-        {/* Pillars / Feature Section */}
-        <section className="pillars">
-          <div className="pillars-container">
-            <button className="carousel-arrow prev" aria-label="Previous">&lt;</button>
+          {/* Pillars / Feature Section */}
+          <section className="pillars">
+            <div className="pillars-container">
             <div className="pillars-content">
               <div className="pillar-list">
                 {pillarsList.map((item) => (
@@ -131,7 +130,6 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <button className="carousel-arrow next" aria-label="Next">&gt;</button>
           </div>
         </section>
 

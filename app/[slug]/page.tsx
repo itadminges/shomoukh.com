@@ -149,7 +149,7 @@ function Enrichments() {
 
 function Programs() {
   const ages = [
-    ['Infants', '/assets/hero.jpg', '6-11 months', 'Your baby will give you the most important information for the experience.'],
+    ['Infants', '/assets/hero.jpg', '3-11 months', 'Providing your baby’s brain with a strong foundation for learning and growing.'],
     ['Toddler', '/assets/learning.jpg', '12-35 months', 'Your child will explore the world around them and form relations with children and adults.'],
     ['Preschool', '/assets/child.jpg', '36-48 months', 'Your child will feel confident in their ability to meet complex challenges.'],
     ['Flex-Care', '/assets/feature.jpg', '6-48 months', 'We also provide pre-care and after-care services.'],
@@ -275,7 +275,7 @@ function Contact() {
         <article>
           <img src="/assets/campus-al-qurum.jpg" alt="Al Qurum campus" />
           <h2>Al Qurum Campus</h2>
-          <p>Al Saruj St, Shatti Al Qurm<br />Way 3046 Bldg 355 Muscat Sultanate of Oman<br />Phone +968 24600886<br />Email : info.alqurum@shomoukh.com</p>
+          <p>Al Suraj St, Shatti Al Qurm Way 3046<br />Bldg 355, Muscat, Sultanate of Oman<br />Phone: +968 24600610<br />Email: info.alqurum@shomoukh.com</p>
           <i />
         </article>
       </section>
