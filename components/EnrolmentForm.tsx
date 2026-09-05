@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const healthConditions = [
   'Chicken Pox', 'Asthma', 'Measles', 'Kidney Difficulties',
@@ -23,10 +23,59 @@ const additionalServices = [
 
 export function EnrolmentForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    const fields = formRef.current?.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea');
+    fields?.forEach((field) => {
+      if (field.type !== 'hidden' && field.name !== 'preferred_days' && field.name !== 'website') field.required = true;
+    });
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    const form = e.currentTarget;
+    const headers = Array.from(form.querySelectorAll<HTMLElement>('.form-section-header'));
+    const fields = Array.from(form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea'));
+    const preferredDays = fields
+      .filter((field): field is HTMLInputElement => field instanceof HTMLInputElement && field.name === 'preferred_days' && field.checked)
+      .map((field) => field.value);
+    if (preferredDays.length === 0) {
+      setError('Please select at least one preferred attendance day.');
+      return;
+    }
+    const entries = [
+      ...fields.flatMap((field) => {
+      if (field.name === 'preferred_days') return [];
+      const isCheckable = field instanceof HTMLInputElement && (field.type === 'radio' || field.type === 'checkbox');
+      if (isCheckable && !field.checked) return [];
+      const value = field.value.trim() || (isCheckable && field.type === 'checkbox' && field.checked ? 'Yes' : '');
+      if (!value) return [];
+      const group = field.closest('.form-group, .health-item, .acknowledgement-group');
+      const label = group?.querySelector<HTMLElement>('.form-label')?.innerText.replace(/\*/g, '').trim() || field.name || 'Response';
+      const section = headers.findLast((header) => Boolean(header.compareDocumentPosition(field) & Node.DOCUMENT_POSITION_FOLLOWING))?.innerText.trim() || 'APPLICATION DETAILS';
+      return [{ section, label, value }];
+      }),
+      {
+        section: 'ADDITIONAL INFORMATION',
+        label: 'Select your preferred days of attendance: days must be consecutive. (The chosen days will be confirmed by the admission team in the final step of enrollment)',
+        value: preferredDays.join(', '),
+      },
+    ];
+
+    setError('');
+    try {
+      const response = await fetch('/api/form-submission', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'Enrolment application', campus: new FormData(form).get('campus'), entries, website: new FormData(form).get('website') }),
+      });
+      if (!response.ok) throw new Error('Unable to send application');
+      setSubmitted(true);
+    } catch {
+      setError('We could not submit your application. Please try again or contact the campus directly.');
+    }
   };
 
   return (
@@ -36,12 +85,15 @@ export function EnrolmentForm() {
       </div>
 
       {submitted ? (
-        <div className="enrolment-success">
-          <h3>Thank You for Your Application!</h3>
-          <p>We have received your enrolment form. Our admissions team will review your details and contact you shortly.</p>
+        <div className="submission-success enrolment-success" role="status">
+          <div className="submission-success__mark" aria-hidden="true">✓</div>
+          <p className="submission-success__eyebrow">SHOMOUKH NURSERY SCHOOL</p>
+          <h3>Thank you for applying.</h3>
+          <p>Thank you for enrolling. Our admissions team will be in touch.</p>
         </div>
       ) : (
-        <form className="enrolment-form" onSubmit={handleSubmit}>
+        <form ref={formRef} className="enrolment-form" onSubmit={handleSubmit}>
+          <input className="form-honeypot" name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
           {/* Top Opening: Academic Year & Campus */}
           <div className="form-row-two-col opening-row">
             <div className="form-group">
@@ -600,6 +652,7 @@ export function EnrolmentForm() {
           <button type="submit" className="enrolment-submit-btn">
             Submit Application
           </button>
+          {error && <p role="alert">{error}</p>}
         </form>
       )}
     </div>

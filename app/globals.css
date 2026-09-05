@@ -1514,19 +1514,70 @@ h1, h2, h3, h4, h5, h6, p {
   letter-spacing: 0.5px;
 }
 
-.enrolment-success {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 12px;
-  padding: 40px 24px;
+.enrolment-success,
+.form-success-screen {
+  min-height: 58vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  color: #166534;
-  margin: 40px 0;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 64px 28px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-.enrolment-success h3 {
-  font-size: 26px;
-  margin-bottom: 12px;
+.submission-success__mark {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  background: #ee9a82;
+  box-shadow: 0 0 0 9px #fff4ef;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+}
+
+.submission-success__eyebrow {
+  margin: 0 0 12px;
+  color: #15343d;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.submission-success h2,
+.submission-success h3 {
+  margin: 0 0 14px;
+  color: #ee9a82;
+  font-family: 'Arial-Rounded', 'Sensei', sans-serif;
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.submission-success > p:last-child {
+  font-size: 18px;
+  color: #15343d;
+  margin: 0;
+}
+
+.form-honeypot {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
 }
 
 .enrolment-form {

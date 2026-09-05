@@ -2,6 +2,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/Shared';
 import { EnrolmentForm } from '@/components/EnrolmentForm';
+import { SimpleForm } from '@/components/SimpleForm';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
@@ -296,23 +297,6 @@ function Parents() {
         ))}
       </section>
     </Shell>
-  );
-}
-
-function SimpleForm({ tour = false }: { tour?: boolean }) {
-  return (
-    <form action="#" className={`reference-form${tour ? ' tour-form' : ''}`}>
-      <label>{tour ? 'Parent Full Name' : 'Please enter your name'} *<input placeholder={tour ? 'E.g. John' : ''} required /></label>
-      {tour && <label>Child Full Name *<input placeholder="E.g. John" required /></label>}
-      <label>Email Address *<input type="email" placeholder={tour ? 'E.g. john@doe.com' : ''} required /></label>
-      {tour && <label>Child Gender *<input placeholder="Male/Female" required /></label>}
-      <label>Your child&apos;s date of birth<input type="date" /></label>
-      {tour && <label>When would you like to visit? *<input type="date" required /></label>}
-      <label>Phone Number *<input placeholder={tour ? 'E.g. +1 3004005000' : ''} required /></label>
-      <label>Choose Shomoukh campus *<select><option>Al Qurum Campus</option><option>Al Mouj Campus</option></select></label>
-      <label className="wide">Message<textarea maxLength={180} /></label>
-      <button>Send Message</button>
-    </form>
   );
 }
 
