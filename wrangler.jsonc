@@ -16,5 +16,49 @@
   },
   "version_metadata": {
     "binding": "CF_VERSION_METADATA"
+  },
+  "env": {
+    "staging": {
+      "name": "shomoukh-com-staging",
+      "assets": {
+        "directory": "dist/client",
+        "not_found_handling": "none",
+        "binding": "ASSETS"
+      },
+      "cache": {
+        "enabled": true
+      },
+      "version_metadata": {
+        "binding": "CF_VERSION_METADATA"
+      },
+      "vars": {
+        "FORM_FROM_EMAIL": "Shomoukh Website <forms@shomoukh.com>",
+        "FORM_IT_RECIPIENT": "it@ges.om",
+        "FORM_AL_MOUJ_RECIPIENT": "info.almouj@shomoukh.com",
+        "FORM_AL_QURUM_RECIPIENT": "info.alqurum@shomoukh.com",
+        "FORM_ALLOWED_ORIGIN": "https://staging.shomoukh.com"
+      }
+    },
+    "production": {
+      "name": "shomoukh-com",
+      "assets": {
+        "directory": "dist/client",
+        "not_found_handling": "none",
+        "binding": "ASSETS"
+      },
+      "cache": {
+        "enabled": true
+      },
+      "version_metadata": {
+        "binding": "CF_VERSION_METADATA"
+      },
+      "vars": {
+        "FORM_FROM_EMAIL": "Shomoukh Website <forms@shomoukh.com>",
+        "FORM_IT_RECIPIENT": "it@ges.om",
+        "FORM_AL_MOUJ_RECIPIENT": "info.almouj@shomoukh.com",
+        "FORM_AL_QURUM_RECIPIENT": "info.alqurum@shomoukh.com",
+        "FORM_ALLOWED_ORIGIN": "https://shomoukh.com"
+      }
+    }
   }
 }
