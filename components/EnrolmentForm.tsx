@@ -52,7 +52,7 @@ export function EnrolmentForm() {
         if (isCheckable && !field.checked) return [];
         const value = field.value.trim() || (isCheckable && field.type === 'checkbox' && field.checked ? 'Yes' : '');
         if (!value) return [];
-        const group = field.closest('.form-group, .health-item, .acknowledgement-group');
+        const group = field.closest('.form-group, .yes-no-group, .health-item, .acknowledgement-group');
         const label = group?.querySelector<HTMLElement>('.form-label')?.innerText.replace(/\*/g, '').trim() || field.name || 'Response';
         const section = headers.findLast((header) => Boolean(header.compareDocumentPosition(field) & Node.DOCUMENT_POSITION_FOLLOWING))?.innerText.trim() || 'APPLICATION DETAILS';
         return [{ section, label, value }];
